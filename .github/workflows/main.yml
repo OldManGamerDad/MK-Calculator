@@ -20,6 +20,7 @@ jobs:
         
     - name: Install dependencies
       run: npm install --no-package-lock
+      working-directory: ./project
       
     - name: Setup Expo CLI
       run: npm install -g @expo/cli
@@ -28,6 +29,7 @@ jobs:
       run: |
         npx expo install --fix
         npx expo build:android --type app-bundle --no-wait
+      working-directory: ./project
         
     - name: Upload AAB artifact
       uses: actions/upload-artifact@v4
