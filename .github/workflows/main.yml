@@ -1,29 +1,32 @@
-name: Build React Native App
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Setup Node.js
-      uses: actions/setup-node@v3
-      with:
-        node-version: '18'
-        
-    - name: Install dependencies
-      run: |
-        cd project
-        npm install
-        
-    - name: Build for web
-      run: |
-        cd project
-        npm run build
+            - name: React Native & Expo CI/CD Builder
+  # You may pin to the exact commit or the version.
+  # uses: TanayK07/react-native-expo-cicd-action@4b5dbf64619480d2e114d2388ab88ea620421a69
+  uses: TanayK07/react-native-expo-cicd-action@v1.0.3
+  with:
+    # Storage type for build artifacts (github-release, zoho-drive, google-drive, custom)
+    storage-type: # optional, default is github-release
+    # Build types to generate (comma-separated: dev, prod-apk, prod-aab)
+    build-types: # optional, default is dev,prod-apk
+    # Tests to run (comma-separated: typescript, eslint, prettier)
+    tests: # optional, default is typescript
+    # Workflow triggers (comma-separated: push-main, pull-request, manual)
+    triggers: # optional, default is push-main,manual
+    # Enable iOS build support
+    ios-support: # optional, default is false
+    # Enable publishing to Expo
+    publish-to-expo: # optional, default is false
+    # Enable publishing to app stores
+    publish-to-stores: # optional, default is false
+    # Enable Jest tests
+    jest-tests: # optional, default is false
+    # Enable React Native Testing Library tests
+    rntl-tests: # optional, default is false
+    # Enable renderHook tests
+    render-hook-tests: # optional, default is false
+    # Enable build caching
+    caching: # optional, default is true
+    # Enable build notifications
+    notifications: # optional, default is false
+    # Path where to output the generated workflow file
+    output-file: # optional, default is .github/workflows/react-native-cicd.yml
+          
