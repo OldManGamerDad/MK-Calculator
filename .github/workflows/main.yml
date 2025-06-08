@@ -3,8 +3,6 @@ name: Build Expo App
 on:
   push:
     branches: [ main ]
-  pull_request:
-    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -13,23 +11,23 @@ jobs:
     
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
       
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'
         
     - name: Install dependencies
-      run: npm install
+      run: npm install --no-package-lock
       
     - name: Setup Expo CLI
       run: npm install -g @expo/cli
       
     - name: Build Android AAB
       run: |
-        expo build:android --type app-bundle --no-wait
+        npx expo install --fix
+        npx expo build:android --type app-bundle --no-wait
         
     - name: Upload AAB artifact
       uses: actions/upload-artifact@v4
