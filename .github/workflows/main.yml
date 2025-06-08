@@ -32,7 +32,7 @@ jobs:
         expo build:android --type app-bundle --no-wait
         
     - name: Upload AAB artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: android-aab
         path: '*.aab'
