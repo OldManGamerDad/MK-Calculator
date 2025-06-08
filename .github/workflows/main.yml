@@ -23,12 +23,12 @@ jobs:
       working-directory: ./project
       
     - name: Setup Expo CLI
-      run: npm install -g @expo/cli
+      run: npm install -g @expo/cli eas-cli
       
     - name: Build Android AAB
       run: |
         npx expo install --fix
-        npx expo build:android --type app-bundle --no-wait
+        eas build --platform android --non-interactive
       working-directory: ./project
         
     - name: Upload AAB artifact
